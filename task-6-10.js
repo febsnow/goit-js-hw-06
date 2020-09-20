@@ -1,31 +1,29 @@
-/*Задача 6-1
-map
-Получи массив имен всех пользователей (свойство name) используя деструктурирующее присваивание для параметра функции ({name}) без пробелов и переносов на новую строку.
+/*Задача 6-10
+reduce, filter, sort
+Получи массив всех умений всех пользователей (поле skills), при этом не должно быть повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
 
-Используй только перебирающие методы массива которые не изменяют (не мутируют) исходный массив. Т.е. нельзя использовать for, splice, push и т.п. мутирующие методы. */
-/*Деструктурирующее присваивание для параметра функции
+Слияние массивов:
 
-PS Деструктурирующее присваивание (ДП):
+const odd = [1, 3, 5];
+const even = [2, 4, 6];
 
-1. Объект как параметр без ДП
-const object = {num : 2}
-function getNum (obj) { return obj.num; }
-console.log(getNum(object)) // 2
+// 1
+[...odd, ...even];
+//  [1, 3, 5, 2, 4, 6]
 
-2. ДП
-const object = {num : 2}
-// const num  =  object.num;
-const { num } = object;
-console.log(num) // 2
+// 2
+odd.concat(even)
+//  [1, 3, 5, 2, 4, 6]
+Используй только перебирающие методы массива которые не изменяют (не мутируют) исходный массив. Т.е. нельзя использовать for, splice, push и т.п. мутирующие методы.
 
-3. Объект как параметр c ДП
-const object = {num : 2}
-//function getNum (obj) { return obj.num; }
-function getNum ({num}) { return num; }
-console.log(getNum(object)) // 2 */
+*/
 
 // Write code under this line
-const getUserNames = array => array.map(({ name }) => name);
+const getSortedUniqueSkills = array =>
+  array
+    .reduce((allSkills, value) => [...allSkills, ...value.skills], [])
+    .sort()
+    .filter((item, index, arr) => arr.indexOf(item) === index);
 
 const users = [
   {
@@ -114,14 +112,14 @@ const users = [
   },
 ];
 
-console.log(getUserNames(users));
-
-/* [
-  "Moore Hensley",
-  "Sharlene Bush",
-  "Ross Vazquez",
-  "Elma Head",
-  "Carey Barr",
-  "Blackburn Dotson",
-  "Sheree Anthony",
-] */
+console.log(getSortedUniqueSkills(users));
+/* [ 'adipisicing', 'amet',
+ 'anim', 'commodo',
+ 'culpa', 'elit',
+ 'ex', 'ipsum',
+ 'irure', 'laborum',
+ 'lorem', 'mollit',
+ 'non', 'nostrud',
+ 'nulla', 'proident',
+ 'tempor', 'velit',
+ 'veniam' ]; */
