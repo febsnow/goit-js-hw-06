@@ -21,7 +21,7 @@ odd.concat(even)
 // Write code under this line
 const getSortedUniqueSkills = array =>
   array
-    .reduce((allSkills, value) => [...allSkills, ...value.skills], [])
+    .reduce((allSkills, item) => [...allSkills, ...item.skills], [])
     .sort()
     .filter((item, index, arr) => arr.indexOf(item) === index);
 
